@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   Clock,
   HeartHandshake,
+  Mail,
   MapPin,
   Phone,
   Scale,
@@ -539,7 +540,7 @@ function Index() {
                       Office address
                     </span>
                     <p className="mt-2 text-base leading-7 text-foreground">
-                      {FIRM.address}
+                      {FIRM.address.full}
                     </p>
                     <p className="mt-1 text-sm text-muted-foreground">
                       Little Rock, Arkansas
@@ -689,7 +690,7 @@ function Index() {
 
               <div className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                <span>{FIRM.address}</span>
+                <span>{FIRM.address.full}</span>
               </div>
             </div>
           </div>
@@ -708,3 +709,7 @@ function Index() {
         </div>
       </footer>
         
+
+    </main>
+  );
+}
