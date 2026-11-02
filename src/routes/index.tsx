@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 import heroImage from "@/assets/office-library.jpg";
-import attorneyImage from "@/assets/attorney.jpg";
+import attorneyImage from "@/assets/john-barron.png";
 import capitolImage from "@/assets/capitol.jpg";
 
 import {
