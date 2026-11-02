@@ -1,3 +1,4 @@
+
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, Phone, X } from "lucide-react";
@@ -8,6 +9,7 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/practice-areas", label: "Practice Areas" },
   { to: "/about", label: "About" },
+  { to: "/our-team", label: "Our Team" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -27,9 +29,13 @@ export function SiteHeader() {
           <p className="font-medium uppercase">
             Established {FIRM.established} · Little Rock, Arkansas
           </p>
+
           <div className="flex items-center gap-5">
             <span>Mon – Fri · 8:30 am – 5:00 pm</span>
-            <a href={FIRM.phoneHref} className="font-semibold text-gold hover:text-gold-soft">
+            <a
+              href={FIRM.phoneHref}
+              className="font-semibold text-gold hover:text-gold-soft"
+            >
               {FIRM.phone}
             </a>
           </div>
@@ -43,6 +49,7 @@ export function SiteHeader() {
             <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/60 font-display text-lg font-bold text-gold transition-colors group-hover:bg-gold group-hover:text-navy-deep">
               B
             </span>
+
             <span className="leading-tight">
               <span className="block font-display text-lg font-semibold tracking-wide sm:text-xl">
                 Barron Law Firm <span className="text-gold">PLLC</span>
@@ -53,38 +60,44 @@ export function SiteHeader() {
             </span>
           </Link>
 
+          {/* Desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex">
             {NAV.map((item) => {
               const active =
-                item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+                item.to === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.to);
+
               return (
                 <Link
                   key={item.to}
                   to={item.to}
                   className={cn(
-                    "relative rounded px-4 py-2 text-sm font-semibold uppercase tracking-widest transition-colors",
+                    "relative rounded px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-colors xl:px-4 xl:text-sm xl:tracking-widest",
                     active ? "text-gold" : "text-ivory/80 hover:text-gold",
                   )}
                 >
                   {item.label}
                   <span
                     className={cn(
-                      "absolute inset-x-4 bottom-0.5 h-0.5 origin-left bg-gold transition-transform duration-300",
+                      "absolute inset-x-3 bottom-0.5 h-0.5 origin-left bg-gold transition-transform duration-300 xl:inset-x-4",
                       active ? "scale-x-100" : "scale-x-0",
                     )}
                   />
                 </Link>
               );
             })}
+
             <a
               href={FIRM.phoneHref}
-              className="ml-4 inline-flex items-center gap-2 rounded border border-gold bg-gold px-4 py-2 text-sm font-bold uppercase tracking-wider text-navy-deep transition-colors hover:bg-gold-soft"
+              className="ml-2 inline-flex items-center gap-2 rounded border border-gold bg-gold px-3 py-2 text-xs font-bold uppercase tracking-wider text-navy-deep transition-colors hover:bg-gold-soft xl:ml-4 xl:px-4 xl:text-sm"
             >
               <Phone className="h-4 w-4" />
               {FIRM.phone}
             </a>
           </nav>
 
+          {/* Mobile menu button */}
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -104,20 +117,33 @@ export function SiteHeader() {
           )}
         >
           <nav className="flex flex-col px-6 py-3">
-            {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="border-b border-ivory/10 py-3 text-sm font-semibold uppercase tracking-widest text-ivory/85 last:border-0 hover:text-gold"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV.map((item) => {
+              const active =
+                item.to === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.to);
+
+              return (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "border-b border-ivory/10 py-3 text-sm font-semibold uppercase tracking-widest last:border-0 transition-colors",
+                    active ? "text-gold" : "text-ivory/85 hover:text-gold",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+
             <a
               href={FIRM.phoneHref}
               className="my-3 inline-flex items-center justify-center gap-2 rounded border border-gold bg-gold px-4 py-3 text-sm font-bold uppercase tracking-wider text-navy-deep"
             >
-              <Phone className="h-4 w-4" /> Call {FIRM.phone}
+              <Phone className="h-4 w-4" />
+              Call {FIRM.phone}
             </a>
           </nav>
         </div>
