@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, BriefcaseBusiness, GraduationCap, Mail, Phone, Scale } from "lucide-react";
-import { Reveal } from "../components/reveal";
+import { Reveal } from "../components/Reveal";
 import { FIRM } from "../data/site";
 
 import johnBarron from "../assets/john-barron.png";
