@@ -1,5 +1,5 @@
-
 import { createFileRoute, Link } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -17,17 +17,20 @@ import {
   TriangleAlert,
   Umbrella,
 } from "lucide-react";
-import heroImage from "@/assets/hero-courthouse.jpg";
-import officeImage from "@/assets/office-library.jpg";
+
+import heroImage from "@/assets/office-library.jpg";
+import attorneyImage from "@/assets/attorney.jpg";
 import capitolImage from "@/assets/capitol.jpg";
+
 import {
   FIRM,
   PRACTICE_AREAS,
   SPECIALTIES,
   type PracticeArea,
 } from "@/data/site";
+
 import { Reveal } from "@/components/Reveal";
-import { AssociationsMarquee, CTABand } from "@/components/sections";
+import { AssociationsMarquee } from "@/components/sections";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,7 +42,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Contact Barron Law Firm PLLC in Little Rock, Arkansas, to discuss personal injury, auto accidents, slip and fall, medical negligence and liability claims.",
+          "Barron Law Firm PLLC in Little Rock, Arkansas. Learn about personal injury representation, auto accidents, slip and fall, medical negligence and liability claims.",
       },
       {
         property: "og:title",
@@ -48,7 +51,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Personal injury legal representation in Little Rock, Arkansas. Call (501) 376-7934 to discuss your legal options.",
+          "Contact Barron Law Firm PLLC at (501) 376-7934 to discuss your legal options.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -66,11 +69,11 @@ const ICONS: Record<PracticeArea["icon"], typeof Car> = {
   umbrella: Umbrella,
 };
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <div className="flex items-center gap-3">
       <span className="h-px w-9 bg-gold" />
-      <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-gold">
+      <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
         {children}
       </p>
     </div>
@@ -79,63 +82,52 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function Index() {
   return (
-    <main className="overflow-hidden">
-      {/* HERO */}
-      <section className="relative isolate flex min-h-[690px] items-center overflow-hidden bg-navy-deep text-ivory md:min-h-[760px]">
+    <main className="overflow-hidden bg-background">
+      {/* PREMIUM HERO */}
+      <section className="relative isolate overflow-hidden bg-[#081326] text-white">
         <img
           src={heroImage}
-          alt="Courthouse architecture representing the legal profession"
-          width={1920}
-          height={1088}
-          fetchPriority="high"
-          className="absolute inset-0 -z-30 h-full w-full object-cover"
-        />
-
-        <div className="absolute inset-0 -z-20 bg-[#0b1525]/80" />
-        <div className="absolute inset-0 -z-20 bg-gradient-to-r from-[#0b1525] via-[#0b1525]/90 to-[#0b1525]/45" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0b1525]/80 via-transparent to-[#0b1525]/20" />
-
-        <div
+          alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute -right-32 top-20 -z-10 h-[400px] w-[400px] rounded-full border border-gold/15 md:h-[600px] md:w-[600px]"
+          className="absolute inset-0 -z-30 h-full w-full object-cover opacity-35"
         />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-16 top-36 -z-10 h-[300px] w-[300px] rounded-full border border-gold/10 md:h-[470px] md:w-[470px]"
-        />
+        <div className="absolute inset-0 -z-20 bg-[#081326]/80" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#081326] via-[#081326]/95 to-[#081326]/55" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#081326]/80 via-transparent to-transparent" />
 
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-24 md:px-8 md:py-28 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
-          <div className="max-w-3xl">
-            <div className="hero-enter hero-enter-1 inline-flex items-center gap-3 border border-gold/30 bg-black/20 px-4 py-3 backdrop-blur-sm">
-              <span className="h-2 w-2 rounded-full bg-gold" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ead6a9]">
-                Serving Little Rock, Arkansas
-              </span>
-            </div>
+        <div className="pointer-events-none absolute -right-28 top-10 -z-10 h-80 w-80 rounded-full border border-gold/15 md:h-[560px] md:w-[560px]" />
+        <div className="pointer-events-none absolute -right-12 top-24 -z-10 h-64 w-64 rounded-full border border-gold/10 md:h-[440px] md:w-[440px]" />
 
-            <p className="hero-enter hero-enter-1 mt-8 text-xs font-medium uppercase tracking-[0.25em] text-white/65">
-              Established {FIRM.established}
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 sm:py-20 md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
+          {/* HERO TEXT */}
+          <div className="hero-enter hero-enter-1 max-w-3xl">
+            <SectionLabel>Established {FIRM.established}</SectionLabel>
+
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-white/65">
+              Little Rock, Arkansas
             </p>
 
-            <h1 className="hero-enter hero-enter-2 mt-4 font-display text-5xl font-semibold leading-[1.06] tracking-tight sm:text-6xl lg:text-7xl xl:text-[82px]">
-              Serious injury.
-              <span className="mt-2 block italic text-gold">
-                Serious representation.
+            <h1 className="mt-5 font-display text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl xl:text-[78px]">
+              Experience.
+              <span className="block">Preparation.</span>
+              <span className="mt-1 block italic text-gold">
+                Personal advocacy.
               </span>
             </h1>
 
-            <div className="hero-enter hero-enter-3 mt-7 h-px w-24 bg-gold" />
+            <div className="mt-7 h-px w-24 bg-gold" />
 
-            <p className="hero-enter hero-enter-3 mt-7 max-w-2xl text-base leading-8 text-white/75 md:text-lg">
+            <p className="mt-7 max-w-xl text-sm leading-7 text-white/75 sm:text-base sm:leading-8">
               When an injury changes your life, understanding your legal options
               matters. Barron Law Firm PLLC provides personal injury representation
-              with a focus on individual attention and your specific circumstances.
+              with attention to each client's circumstances and the details of
+              their case.
             </p>
 
-            <div className="hero-enter hero-enter-4 mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href={FIRM.phoneHref}
-                className="group inline-flex min-h-14 items-center justify-center gap-3 border border-gold bg-gold px-6 py-4 text-xs font-bold uppercase tracking-[0.13em] text-navy-deep transition-all duration-300 hover:border-[#ead6a9] hover:bg-[#ead6a9]"
+                className="group inline-flex min-h-12 items-center justify-center gap-3 border border-gold bg-gold px-6 py-4 text-xs font-bold uppercase tracking-wider text-[#081326] transition duration-300 hover:-translate-y-1 hover:bg-[#ead6a9]"
               >
                 <Phone className="h-4 w-4" />
                 Call {FIRM.phone}
@@ -144,265 +136,261 @@ function Index() {
 
               <Link
                 to="/contact"
-                className="inline-flex min-h-14 items-center justify-center gap-3 border border-white/40 bg-white/[0.04] px-6 py-4 text-xs font-bold uppercase tracking-[0.13em] text-white backdrop-blur-sm transition-all duration-300 hover:border-gold hover:text-gold"
+                className="inline-flex min-h-12 items-center justify-center gap-3 border border-white/35 px-6 py-4 text-xs font-bold uppercase tracking-wider text-white transition duration-300 hover:border-gold hover:text-gold"
               >
                 Request a Consultation
                 <ArrowDownRight className="h-4 w-4" />
               </Link>
             </div>
 
-            <div className="hero-enter hero-enter-4 mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/65">
+            <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-xs text-white/65">
               <span className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-gold" />
-                Little Rock, Arkansas
+                <CheckCircle2 className="h-4 w-4 text-gold" />
+                Individual Attention
               </span>
               <span className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-gold" />
-                Mon–Fri, 8:30 AM–5 PM
+                <CheckCircle2 className="h-4 w-4 text-gold" />
+                Prepared Representation
               </span>
             </div>
           </div>
 
-          <div className="relative hidden lg:block">
-            <div className="absolute -inset-5 border border-gold/30" />
-            <div className="absolute -right-3 -top-3 h-20 w-20 border-r border-t border-gold" />
+          {/* ATTORNEY PHOTO ONLY */}
+          <Reveal direction="left">
+            <div className="relative mx-auto w-full max-w-[390px] lg:ml-auto">
+              <div className="absolute -inset-3 border border-gold/50" />
+              <div className="absolute -right-5 -top-5 h-20 w-20 border-r border-t border-gold" />
 
-            <div className="relative overflow-hidden border border-white/15 bg-[#111d2d]/85 p-3 shadow-2xl backdrop-blur-sm">
-              <img
-                src={officeImage}
-                alt="Law library interior"
-                width={1600}
-                height={912}
-                className="h-[340px] w-full object-cover"
-              />
-
-              <div className="border-t border-gold/35 px-5 py-6">
-                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">
-                  Barron Law Firm PLLC
-                </p>
-                <h2 className="mt-3 font-display text-2xl font-semibold text-white">
-                  A personal approach to legal representation.
-                </h2>
-                <Link
-                  to="/about"
-                  className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#ead6a9] transition-colors hover:text-white"
-                >
-                  Get to know our firm
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="absolute -bottom-7 -left-9 flex items-center gap-3 border border-gold/40 bg-[#111d2d] px-5 py-4 shadow-xl">
-              <Award className="h-8 w-8 text-gold" />
-              <div>
-                <p className="font-display text-lg font-semibold text-white">
-                  Since {FIRM.established}
-                </p>
-                <p className="text-[9px] uppercase tracking-[0.16em] text-white/60">
-                  Firm history
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
-      </section>
-
-      {/* INTRODUCTION */}
-      <section className="bg-background py-20 md:py-28">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-8 lg:grid-cols-2 lg:gap-20">
-          <Reveal direction="right">
-            <div className="relative mx-auto max-w-xl">
-              <div className="absolute -bottom-4 -left-4 right-8 top-8 border border-gold/50" />
-              <div className="relative overflow-hidden bg-secondary p-2">
+              <div className="relative overflow-hidden border border-white/15 bg-[#111d2d]/95 p-2 shadow-2xl">
                 <img
-                  src={officeImage}
-                  alt="Law library and professional legal environment"
-                  width={1600}
-                  height={912}
-                  loading="lazy"
-                  className="aspect-[5/4] w-full object-cover transition-transform duration-700 hover:scale-[1.025]"
+                  src={attorneyImage}
+                  alt="Attorney John W. Barron"
+                  width={900}
+                  height={1100}
+                  fetchPriority="high"
+                  className="h-[350px] w-full object-cover object-top sm:h-[440px]"
                 />
-              </div>
 
-              <div className="absolute -bottom-7 right-0 max-w-[240px] border border-gold/40 bg-navy-deep px-5 py-5 text-ivory shadow-xl md:-right-5">
-                <p className="font-display text-3xl font-semibold text-gold">
-                  {FIRM.established}
-                </p>
-                <p className="mt-1 text-[10px] uppercase tracking-[0.17em] text-white/75">
-                  Year the firm was established
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal direction="right" delay={120}>
-            <SectionLabel>Welcome to Barron Law Firm</SectionLabel>
-
-            <h2 className="mt-5 font-display text-3xl font-semibold leading-tight text-foreground md:text-5xl">
-              Legal representation that starts with listening.
-            </h2>
-
-            <p className="mt-6 leading-8 text-muted-foreground">
-              An injury can affect your health, your work, your family, and your
-              future. Getting clear information about your legal options is an
-              important first step.
-            </p>
-
-            <p className="mt-4 leading-8 text-muted-foreground">
-              Barron Law Firm PLLC represents clients in personal injury matters
-              in Little Rock, Arkansas. Our approach emphasizes individual
-              attention, careful case preparation, and helping clients understand
-              the process ahead.
-            </p>
-
-            <div className="mt-8 space-y-4">
-              {[
-                "Personal attention to your circumstances",
-                "Clear communication about the legal process",
-                "A discussion of your available legal options",
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-                  <p className="text-sm leading-6 text-foreground">{item}</p>
+                <div className="border-t border-gold/40 px-5 py-5 sm:px-6">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.23em] text-gold">
+                    Barron Law Firm PLLC
+                  </p>
+                  <h2 className="mt-2 font-display text-2xl font-semibold text-white">
+                    John W. Barron
+                  </h2>
+                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-white/60">
+                    Attorney
+                  </p>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            <Link
-              to="/about"
-              className="mt-9 inline-flex items-center gap-3 border-b border-gold pb-2 text-xs font-bold uppercase tracking-[0.15em] text-foreground transition-colors hover:text-gold"
-            >
-              Discover Our Firm
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+              <div className="absolute -bottom-5 -left-3 flex items-center gap-3 border border-gold/40 bg-[#111d2d] px-4 py-3 shadow-xl sm:-left-8 sm:px-5 sm:py-4">
+                <Award className="h-7 w-7 text-gold" />
+                <div>
+                  <p className="font-display text-lg font-semibold text-white">
+                    Since {FIRM.established}
+                  </p>
+                  <p className="text-[9px] uppercase tracking-[0.15em] text-white/60">
+                    Firm history
+                  </p>
+                </div>
+              </div>
+            </div>
           </Reveal>
+        </div>
+
+        <div className="h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+      </section>
+
+      {/* THREE VALUE POINTS */}
+      <section className="border-b border-border bg-card">
+        <div className="mx-auto grid max-w-7xl gap-0 px-5 sm:grid-cols-3 md:px-8">
+          {[
+            {
+              icon: Scale,
+              title: "Strategic Counsel",
+              text: "A thoughtful approach to your legal concerns.",
+            },
+            {
+              icon: ShieldCheck,
+              title: "Client-Focused",
+              text: "Clear guidance through the legal process.",
+            },
+            {
+              icon: Award,
+              title: "Prepared Advocacy",
+              text: "Careful attention to the details of your matter.",
+            },
+          ].map((item, index) => (
+            <div
+              key={item.title}
+              className={`flex items-center gap-4 py-6 sm:px-5 lg:px-8 ${
+                index !== 0 ? "border-t border-border sm:border-l sm:border-t-0" : ""
+              }`}
+            >
+              <item.icon className="h-7 w-7 shrink-0 text-gold" />
+              <div>
+                <h2 className="font-display text-base font-semibold text-foreground">
+                  {item.title}
+                </h2>
+                <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* PRACTICE AREAS */}
-      <section className="relative bg-secondary py-20 md:py-28">
+      {/* CREDENTIALS AND AFFILIATIONS */}
+      <section className="bg-secondary py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <Reveal direction="right" className="mx-auto max-w-3xl text-center">
+          <Reveal className="text-center">
+            <div className="flex justify-center">
+              <SectionLabel>Professional Recognition</SectionLabel>
+            </div>
+            <h2 className="mt-4 font-display text-3xl font-semibold text-foreground md:text-4xl">
+              Credentials &amp; Affiliations
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">
+              Professional organizations and affiliations associated with the firm.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 border-y border-border py-4">
+            <AssociationsMarquee />
+          </div>
+        </div>
+      </section>
+
+      {/* PRACTICE AREA INTRO */}
+      <section className="bg-background py-20 md:py-28">
+        <div className="mx-auto max-w-4xl px-5 text-center md:px-8">
+          <Reveal>
             <div className="flex justify-center">
               <SectionLabel>How We Can Help</SectionLabel>
             </div>
-
-            <h2 className="mt-5 font-display text-3xl font-semibold text-foreground md:text-5xl">
-              Our Practice Areas
+            <h2 className="mt-5 font-display text-3xl font-semibold leading-tight text-foreground sm:text-4xl md:text-5xl">
+              Focused Representation.
+              <span className="block">Meaningful Advocacy.</span>
             </h2>
-
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-muted-foreground md:text-base">
-              Explore the types of personal injury matters covered by our
-              practice. Every situation is different, and the right next step
-              depends on the facts of your case.
+              Explore the legal services offered by Barron Law Firm PLLC.
+              Every situation is different, and the appropriate approach depends
+              on the facts of each case.
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {PRACTICE_AREAS.map((area, index) => {
-              const Icon = ICONS[area.icon];
-
-              return (
-                <Reveal
-                  key={area.slug}
-                  direction="right"
-                  delay={index * 80}
-                  as="article"
-                >
-                  <Link
-                    to="/practice-areas/$slug"
-                    params={{ slug: area.slug }}
-                    className="group relative flex h-full min-h-[280px] flex-col overflow-hidden border border-border bg-card p-7 transition-all duration-500 hover:-translate-y-1 hover:border-gold/60 hover:shadow-[0_18px_40px_rgba(15,29,49,0.09)] md:p-8"
-                  >
-                    <div className="absolute right-0 top-0 h-20 w-20 border-b border-l border-gold/10 transition-colors group-hover:border-gold/40" />
-
-                    <div className="flex h-14 w-14 items-center justify-center border border-gold/30 bg-navy-deep text-gold transition-all duration-300 group-hover:bg-gold group-hover:text-navy-deep">
-                      <Icon className="h-6 w-6" strokeWidth={1.5} />
-                    </div>
-
-                    <h3 className="mt-6 font-display text-xl font-semibold text-foreground transition-colors group-hover:text-gold">
-                      {area.title}
-                    </h3>
-
-                    <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground">
-                      {area.excerpt}
-                    </p>
-
-                    <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-foreground">
-                        Explore Practice Area
-                      </span>
-                      <ArrowRight className="h-4 w-4 text-gold transition-transform duration-300 group-hover:translate-x-1" />
-                    </div>
-                  </Link>
-                </Reveal>
-              );
-            })}
+          <div className="mt-8 flex justify-center">
+            <Link
+              to="/practice-areas"
+              className="inline-flex items-center gap-2 border-b border-gold pb-2 text-xs font-bold uppercase tracking-wider text-foreground transition hover:text-gold"
+            >
+              View All Practice Areas
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
-      </section>
 
-      {/* WHY THE FIRM */}
-      <section className="bg-background py-20 md:py-28">
+        <div className="mx-auto mt-12 grid max-w-7xl gap-5 px-5 sm:grid-cols-2 lg:grid-cols-3 md:px-8">
+          {PRACTICE_AREAS.map((area, index) => {
+            const Icon = ICONS[area.icon];
+
+            return (
+              <Reveal key={area.slug} delay={index * 70} as="article">
+                <Link
+                  to="/practice-areas/$slug"
+                  params={{ slug: area.slug }}
+                  className="group relative flex h-full min-h-[270px] flex-col overflow-hidden border border-border bg-card p-7 transition-all duration-500 hover:-translate-y-1 hover:border-gold/60 hover:shadow-xl md:p-8"
+                >
+                  <div className="absolute right-0 top-0 h-16 w-16 border-b border-l border-gold/15 transition group-hover:border-gold/50" />
+
+                  <div className="flex h-14 w-14 items-center justify-center border border-gold/40 bg-[#0b1729] text-gold transition-colors duration-300 group-hover:bg-gold group-hover:text-[#0b1729]">
+                    <Icon className="h-6 w-6" strokeWidth={1.5} />
+                  </div>
+
+                  <h3 className="mt-6 font-display text-xl font-semibold text-foreground transition-colors group-hover:text-gold">
+                    {area.title}
+                  </h3>
+
+                  <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground">
+                    {area.excerpt}
+                  </p>
+
+                  <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-foreground">
+                      Learn More
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-gold transition-transform group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+            
+      {/* OUR APPROACH */}
+      <section className="bg-secondary py-20 md:py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 md:px-8 lg:grid-cols-2 lg:gap-20">
           <Reveal direction="right">
             <div className="relative">
-              <div className="absolute -left-4 -top-4 h-full w-full border border-gold/40" />
+              <div className="absolute -left-3 -top-3 h-full w-full border border-gold/40" />
               <img
                 src={capitolImage}
                 alt="Arkansas State Capitol in Little Rock"
-                width={1600}
-                height={912}
+                width={1200}
+                height={900}
                 loading="lazy"
-                className="relative aspect-[5/4] w-full object-cover shadow-xl"
+                className="relative aspect-[5/4] w-full object-cover"
               />
-              <div className="absolute bottom-5 left-5 right-5 border border-white/20 bg-[#101d30]/90 p-5 backdrop-blur-sm md:bottom-8 md:left-8 md:right-8 md:p-7">
+              <div className="absolute bottom-4 left-4 right-4 border border-white/20 bg-[#0b1729]/95 p-5 backdrop-blur-sm sm:bottom-7 sm:left-7 sm:right-7 sm:p-7">
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold">
                   Serving Little Rock, Arkansas
                 </p>
-                <p className="mt-2 font-display text-xl font-semibold text-white md:text-2xl">
-                  Your case deserves careful consideration.
+                <p className="mt-2 font-display text-xl font-semibold text-white sm:text-2xl">
+                  Your concerns deserve careful consideration.
                 </p>
               </div>
             </div>
           </Reveal>
 
-          <Reveal direction="right" delay={120}>
-            <SectionLabel>Why Choose Barron Law Firm</SectionLabel>
+          <Reveal direction="left" delay={100}>
+            <SectionLabel>Why Choose Our Firm</SectionLabel>
 
-            <h2 className="mt-5 font-display text-3xl font-semibold leading-tight text-foreground md:text-5xl">
-              Informed decisions. Individual attention.
+            <h2 className="mt-5 font-display text-3xl font-semibold leading-tight text-foreground sm:text-4xl md:text-5xl">
+              Personal attention.
+              <span className="block italic text-gold">
+                Thoughtful preparation.
+              </span>
             </h2>
 
-            <p className="mt-6 leading-8 text-muted-foreground">
-              Understanding your rights after an accident can feel overwhelming.
-              Legal guidance can help you assess the circumstances, understand
-              potential next steps, and make informed decisions about your claim.
+            <p className="mt-6 text-sm leading-8 text-muted-foreground md:text-base">
+              An injury can affect your health, work, family, and future.
+              Understanding your legal options can help you make informed
+              decisions about what to do next.
             </p>
 
-            <div className="mt-9 space-y-6">
+            <div className="mt-8 space-y-6">
               {[
                 {
                   icon: ShieldCheck,
                   title: "Careful case preparation",
-                  text: "Reviewing the circumstances and available information relevant to your matter.",
+                  text: "Reviewing the circumstances and information relevant to your matter.",
                 },
                 {
                   icon: HeartHandshake,
-                  title: "A client-focused approach",
-                  text: "Taking time to understand your concerns and explain the legal process.",
+                  title: "Individual attention",
+                  text: "Taking time to understand your concerns and priorities.",
                 },
                 {
                   icon: Clock,
                   title: "Clear communication",
-                  text: "Helping you understand important steps and decisions as your matter progresses.",
+                  text: "Helping you understand the process and the decisions ahead.",
                 },
               ].map((item) => (
                 <div key={item.title} className="flex gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-gold/40 bg-secondary text-gold">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-gold/40 bg-background text-gold">
                     <item.icon className="h-5 w-5" />
                   </div>
                   <div>
@@ -418,30 +406,23 @@ function Index() {
             </div>
 
             <Link
-              to="/contact"
-              className="mt-9 inline-flex items-center gap-3 bg-navy-deep px-6 py-4 text-xs font-bold uppercase tracking-[0.14em] text-white transition-colors hover:bg-gold hover:text-navy-deep"
+              to="/about"
+              className="mt-8 inline-flex items-center gap-3 border-b border-gold pb-2 text-xs font-bold uppercase tracking-wider text-foreground transition hover:text-gold"
             >
-              Discuss Your Situation
+              Learn About Our Firm
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* ASSOCIATIONS AND CREDENTIALS */}
-      <div className="border-y border-border">
-        <AssociationsMarquee />
-      </div>
-      
-      {/* SERVICES AND CONTACT */}
-      <section className="relative overflow-hidden bg-secondary py-20 md:py-24">
+      {/* LEGAL SERVICES */}
+      <section className="bg-background py-20 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-2 lg:gap-20">
-
-          {/* SERVICES */}
           <Reveal direction="right">
             <SectionLabel>Areas of Focus</SectionLabel>
 
-            <h2 className="mt-5 font-display text-3xl font-semibold text-foreground md:text-4xl">
+            <h2 className="mt-5 font-display text-3xl font-semibold text-foreground sm:text-4xl">
               Legal services
             </h2>
 
@@ -450,13 +431,13 @@ function Index() {
               addressed by the firm.
             </p>
 
-            <ul className="mt-7 space-y-0">
+            <ul className="mt-7">
               {SPECIALTIES.map((specialty) => (
                 <li
                   key={specialty}
-                  className="group flex items-center gap-3 border-b border-border py-4 text-sm font-medium text-foreground transition-all duration-300 hover:translate-x-1"
+                  className="group flex items-center gap-3 border-b border-border py-4 text-sm font-medium text-foreground transition-transform duration-300 hover:translate-x-1"
                 >
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-gold/40 text-gold transition-colors duration-300 group-hover:bg-gold group-hover:text-white">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center border border-gold/40 text-gold transition-colors group-hover:bg-gold group-hover:text-[#0b1729]">
                     <CheckCircle2 className="h-4 w-4" />
                   </span>
                   {specialty}
@@ -466,111 +447,106 @@ function Index() {
 
             <Link
               to="/practice-areas"
-              className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-foreground transition-colors hover:text-gold"
+              className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground transition-colors hover:text-gold"
             >
-              Explore practice areas
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              Explore Practice Areas
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
 
-          {/* CONTACT */}
+          {/* CONTACT CARD */}
           <Reveal direction="left">
-            <div className="relative h-full overflow-hidden border border-border bg-background p-7 shadow-sm md:p-10">
+            <div className="relative h-full border border-border bg-card p-6 shadow-sm sm:p-9">
               <div className="absolute right-0 top-0 h-1 w-24 bg-gold" />
 
-              <SectionLabel>Get in touch</SectionLabel>
+              <SectionLabel>Get in Touch</SectionLabel>
 
-              <h2 className="mt-5 font-display text-3xl font-semibold text-foreground md:text-4xl">
-                Speak with our firm
+              <h2 className="mt-5 font-display text-3xl font-semibold text-foreground sm:text-4xl">
+                Speak with our firm.
               </h2>
 
               <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                Contact Barron Law Firm to discuss your legal concerns and
-                learn more about the services we provide.
+                Contact Barron Law Firm PLLC in Little Rock to discuss your
+                concerns and learn more about your legal options.
               </p>
 
               <div className="mt-8 space-y-6">
-
-                {/* PHONE */}
                 <a
-                  href={`tel:${FIRM.phone}`}
-                  className="group flex items-start gap-4 border-b border-border pb-6"
+                  href={FIRM.phoneHref}
+                  className="group flex items-start gap-4 border-b border-border pb-5"
                 >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-gold/40 text-gold transition-all duration-300 group-hover:bg-gold group-hover:text-white">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-gold/40 text-gold transition-colors group-hover:bg-gold group-hover:text-[#0b1729]">
                     <Phone className="h-5 w-5" />
                   </span>
-
                   <span className="min-w-0">
-                    <span className="block text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
-                      Call our office
+                    <span className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      Call Our Office
                     </span>
-                    <span className="mt-2 block break-words text-lg font-semibold text-foreground transition-colors group-hover:text-gold">
+                    <span className="mt-2 block break-words text-lg font-semibold text-foreground group-hover:text-gold">
                       {FIRM.phone}
                     </span>
                   </span>
                 </a>
 
-                {/* EMAIL */}
                 <a
-                  href={`mailto:${FIRM.email}`}
-                  className="group flex items-start gap-4 border-b border-border pb-6"
+                  href={FIRM.emailHref}
+                  className="group flex items-start gap-4 border-b border-border pb-5"
                 >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-gold/40 text-gold transition-all duration-300 group-hover:bg-gold group-hover:text-white">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-gold/40 text-gold transition-colors group-hover:bg-gold group-hover:text-[#0b1729]">
                     <Mail className="h-5 w-5" />
                   </span>
-
                   <span className="min-w-0">
-                    <span className="block text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
+                    <span className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">
                       Email
                     </span>
-                    <span className="mt-2 block break-all text-base font-semibold text-foreground transition-colors group-hover:text-gold">
+                    <span className="mt-2 block break-all text-base font-semibold text-foreground group-hover:text-gold">
                       {FIRM.email}
                     </span>
                   </span>
                 </a>
 
-                {/* ADDRESS */}
                 <div className="flex items-start gap-4">
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-gold/40 text-gold">
                     <MapPin className="h-5 w-5" />
                   </span>
-
-                  <div className="min-w-0">
-                    <span className="block text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
-                      Office address
+                  <div>
+                    <span className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      Office Address
                     </span>
-                    <p className="mt-2 text-base leading-7 text-foreground">
+                    <p className="mt-2 text-sm leading-7 text-foreground">
                       {FIRM.address.full}
-                    </p>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Little Rock, Arkansas
                     </p>
                   </div>
                 </div>
 
-                {/* OFFICE HOURS */}
                 <div className="flex items-start gap-4">
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-gold/40 text-gold">
                     <Clock className="h-5 w-5" />
                   </span>
-
                   <div>
-                    <span className="block text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
-                      Office hours
+                    <span className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      Office Hours
                     </span>
-                    <p className="mt-2 text-sm leading-7 text-foreground">
-                      Monday – Friday: 8:30 AM – 5:00 PM
-                    </p>
-                    <p className="text-sm leading-7 text-muted-foreground">
-                      Saturday – Sunday: Closed
-                    </p>
+                    <div className="mt-2 space-y-1 text-sm leading-6 text-foreground">
+                      {FIRM.hours.map((hour) => (
+                        <p
+                          key={hour.days}
+                          className="flex flex-wrap justify-between gap-x-5 gap-y-1"
+                        >
+                          <span>{hour.days}</span>
+                          <span className="text-muted-foreground">
+                            {hour.time}
+                          </span>
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
 
               <a
-                href={`tel:${FIRM.phone}`}
-                className="mt-9 inline-flex w-full items-center justify-center gap-3 bg-gold px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-foreground"
+                href={FIRM.phoneHref}
+                className="mt-8 inline-flex w-full items-center justify-center gap-3 bg-gold px-5 py-4 text-xs font-bold uppercase tracking-wider text-[#0b1729] transition duration-300 hover:-translate-y-0.5 hover:bg-[#ead6a9]"
               >
                 <Phone className="h-4 w-4" />
                 Call Barron Law Firm
@@ -582,107 +558,128 @@ function Index() {
       </section>
 
       {/* FINAL CALL TO ACTION */}
-      <section className="relative overflow-hidden bg-navy-deep py-20 text-white md:py-28">
-        <div className="pointer-events-none absolute -right-20 -top-24 h-80 w-80 rounded-full border border-gold/20" />
-        <div className="pointer-events-none absolute -right-8 -top-12 h-56 w-56 rounded-full border border-gold/20" />
-        <div className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+      <section className="relative overflow-hidden bg-[#081326] py-20 text-white md:py-28">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full border border-gold/20" />
+        <div className="pointer-events-none absolute -right-8 -top-8 h-56 w-56 rounded-full border border-gold/15" />
+        <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
 
         <div className="relative mx-auto max-w-4xl px-5 text-center md:px-8">
           <Reveal>
-            <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-gold">
-              <span className="h-px w-8 bg-gold" />
-              Barron Law Firm PLLC
-              <span className="h-px w-8 bg-gold" />
-            </span>
+            <div className="flex justify-center">
+              <SectionLabel>Barron Law Firm PLLC</SectionLabel>
+            </div>
 
-            <h2 className="mt-6 font-display text-3xl font-semibold leading-tight md:text-5xl md:leading-tight">
+            <h2 className="mt-6 font-display text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl">
               Have questions about your
-              <span className="block italic text-gold">
-                legal options?
-              </span>
+              <span className="block italic text-gold">legal options?</span>
             </h2>
 
             <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
-              Reach out to our Little Rock office to discuss your concerns
-              and learn more about how we may be able to assist you.
+              Contact our Little Rock office to discuss your concerns and learn
+              more about the legal options that may be available to you.
             </p>
 
             <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
               <a
-                href={`tel:${FIRM.phone}`}
-                className="inline-flex items-center justify-center gap-3 bg-gold px-8 py-4 text-xs font-bold uppercase tracking-[0.14em] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-navy-deep"
+                href={FIRM.phoneHref}
+                className="inline-flex items-center justify-center gap-3 bg-gold px-8 py-4 text-xs font-bold uppercase tracking-wider text-[#081326] transition duration-300 hover:-translate-y-1 hover:bg-[#ead6a9]"
               >
                 <Phone className="h-4 w-4" />
                 {FIRM.phone}
               </a>
 
-              <a
-                href={`mailto:${FIRM.email}`}
-                className="inline-flex items-center justify-center gap-3 border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-[0.14em] text-white transition-all duration-300 hover:border-gold hover:bg-white/5"
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-3 border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-wider text-white transition duration-300 hover:border-gold hover:text-gold"
               >
-                <Mail className="h-4 w-4" />
-                Email Our Office
-              </a>
+                Contact Our Office
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-white/10 bg-navy-deep text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-3 md:px-8">
-
+      {/* FOOTER WITH NAVIGATION */}
+      <footer className="texture-navy border-t border-white/10 bg-[#071226] text-white">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-12 lg:py-16">
           <div>
-            <Link to="/" className="inline-block">
-              <span className="font-display text-2xl font-semibold tracking-wide">
-                Barron <span className="text-gold">Law Firm</span>
+            <Link to="/" className="group inline-flex items-center gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/60 font-display text-lg font-bold text-gold transition-colors group-hover:bg-gold group-hover:text-[#071226]">
+                B
+              </span>
+              <span className="font-display text-lg font-semibold">
+                Barron Law Firm <span className="text-gold">PLLC</span>
               </span>
             </Link>
 
-            <p className="mt-4 max-w-sm text-sm leading-7 text-white/60">
-              Providing legal services from Little Rock, Arkansas.
-              Contact our office to discuss your legal concerns.
+            <p className="mt-5 max-w-sm text-sm leading-7 text-white/60">
+              Legal representation in Little Rock, Arkansas. Contact our office
+              to discuss your legal concerns and available options.
+            </p>
+
+            <p className="mt-4 text-xs uppercase tracking-widest text-gold">
+              Established {FIRM.established}
             </p>
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-gold">
-              Quick links
+            <h3 className="font-display text-base font-semibold uppercase tracking-wider text-gold">
+              Quick Navigation
             </h3>
 
-            <div className="mt-5 flex flex-col items-start gap-3 text-sm text-white/70">
-              <Link to="/" className="transition-colors hover:text-gold">
+            <nav className="mt-5 flex flex-col items-start gap-3 text-sm text-white/70">
+              <Link to="/" className="transition hover:translate-x-1 hover:text-gold">
                 Home
               </Link>
-              <Link to="/about" className="transition-colors hover:text-gold">
-                About
+              <Link to="/about" className="transition hover:translate-x-1 hover:text-gold">
+                About Our Firm
               </Link>
-              <Link to="/practice-areas" className="transition-colors hover:text-gold">
+              <Link to="/practice-areas" className="transition hover:translate-x-1 hover:text-gold">
                 Practice Areas
               </Link>
-              <Link to="/contact" className="transition-colors hover:text-gold">
+              <Link to="/contact" className="transition hover:translate-x-1 hover:text-gold">
                 Contact
               </Link>
-            </div>
+            </nav>
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-gold">
-              Contact information
+            <h3 className="font-display text-base font-semibold uppercase tracking-wider text-gold">
+              Practice Areas
+            </h3>
+
+            <nav className="mt-5 flex flex-col items-start gap-3 text-sm text-white/70">
+              {PRACTICE_AREAS.map((area) => (
+                <Link
+                  key={area.slug}
+                  to="/practice-areas/$slug"
+                  params={{ slug: area.slug }}
+                  className="transition hover:translate-x-1 hover:text-gold"
+                >
+                  {area.title}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <div>
+            <h3 className="font-display text-base font-semibold uppercase tracking-wider text-gold">
+              Contact
             </h3>
 
             <div className="mt-5 space-y-4 text-sm text-white/70">
               <a
-                href={`tel:${FIRM.phone}`}
-                className="flex items-start gap-3 transition-colors hover:text-gold"
+                href={FIRM.phoneHref}
+                className="flex items-start gap-3 transition hover:text-gold"
               >
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                 <span>{FIRM.phone}</span>
               </a>
 
               <a
-                href={`mailto:${FIRM.email}`}
-                className="flex items-start gap-3 transition-colors hover:text-gold"
+                href={FIRM.emailHref}
+                className="flex items-start gap-3 transition hover:text-gold"
               >
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                 <span className="break-all">{FIRM.email}</span>
@@ -697,19 +694,15 @@ function Index() {
         </div>
 
         <div className="border-t border-white/10">
-          <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-xs text-white/50 md:flex-row md:items-center md:justify-between md:px-8">
+          <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between md:px-8">
             <p>
               © {new Date().getFullYear()} Barron Law Firm PLLC. All rights reserved.
             </p>
-
-            <p>
-              Little Rock, Arkansas
-            </p>
+            <p>Little Rock, Arkansas</p>
           </div>
         </div>
       </footer>
-        
-
     </main>
   );
-}
+                  }
+          
